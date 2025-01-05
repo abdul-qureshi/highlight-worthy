@@ -49,10 +49,19 @@ function parseResult(data) {
 }
 
 fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
+    .then(response => {
         const resultDiv = document.getElementById('result');
-        resultDiv.textContent = parseResult(data);
+        if (response.ok) {
+            response.json().then(
+                 data =>resultDiv.textContent = parseResult(data));
+        } else {
+            let errorText = 'Error loading data.';
+            if (response.type === 'cors') {
+                errorText += ' Please enable visit <a href="https://cors-anywhere.herokuapp.com/" target="_blank">this page</a> and then reload this page.';
+            }
+            resultDiv.innerHTML = errorText;
+        }
+        
     })
     .catch(error => {
         const resultDiv = document.getElementById('result');
