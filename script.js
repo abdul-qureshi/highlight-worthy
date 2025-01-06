@@ -35,6 +35,9 @@ function parseResult(data) {
     });
 
     if (closestGame && closestGame.gameState != "FUT") {
+        if (closestGame.gameState === "LIVE") {
+            return `The game between ${closestGame.homeTeam.name.default} and ${closestGame.awayTeam.name.default} is live`;
+        }
         let homeTeamScore = closestGame.homeTeam.score;
         let awayTeamScore = closestGame.awayTeam.score;
 
