@@ -2,7 +2,37 @@
 <html>
 <head>
   <title>Was the match highlight worthy?</title>
-</head>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #result {
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      #result {
+        width: 100%;
+      }
+    }
+  </style>
 <body>
     <div id="result"></div>
 
