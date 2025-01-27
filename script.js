@@ -47,9 +47,9 @@ function parseResult(data) {
         let awayTeamScore = closestGame.awayTeam.score;
 
         if (homeTeamScore > awayTeamScore) {
-            return `Home team won on ${closestDate}`;
+            return `Home team won on ${closestDate}.`;
         } else {
-            return `Away team won on ${closestDate}`;
+            return `Away team won on ${closestDate}.`;
         }
     } else {
         return 'No recent game found.';
@@ -61,7 +61,16 @@ fetch(apiUrl)
         const resultDiv = document.getElementById('result');
         if (response.ok) {
             response.json().then(
-                 data =>resultDiv.textContent = parseResult(data));
+                 data => {
+                     const resultMessage = parseResult(data);
+                     resultDiv.innerHTML = `
+                         <div id="logos">
+                             <img id="homeTeamLogo" src="${data.gamesByDate[0].games[0].homeTeam.logo}" alt="Home Team Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+                             <img id="awayTeamLogo" src="${data.gamesByDate[0].games[0].awayTeam.logo}" alt="Away Team Logo" style="width: 50px; height: 50px;">
+                         </div>
+                         <p>${resultMessage}</p>
+                     `;
+                 });
         } else {
             let errorText = 'Error loading data.';
             if (response.type === 'cors') {
