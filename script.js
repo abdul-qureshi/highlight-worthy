@@ -35,6 +35,11 @@ function parseResult(data) {
     });
 
     if (closestGame && closestGame.gameState != "FUT") {
+        const homeTeamLogo = document.getElementById('homeTeamLogo');
+        const awayTeamLogo = document.getElementById('awayTeamLogo');
+        homeTeamLogo.src = closestGame.homeTeam.logo;
+        awayTeamLogo.src = closestGame.awayTeam.logo;
+
         if (closestGame.gameState === "LIVE") {
             return `The game between ${closestGame.homeTeam.name.default} and ${closestGame.awayTeam.name.default} is live`;
         }
