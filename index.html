@@ -36,9 +36,13 @@
 <body>
     <div id="result">
         <div id="logos">
-            <img id="homeTeamLogo" alt="Home Team Logo" style="width: 50px; height: 50px; margin-right: 10px;">
-            <img id="awayTeamLogo" alt="Away Team Logo" style="width: 50px; height: 50px;">
+            <div style="display: flex; align-items: center;">
+              <img id="homeTeamLogo" alt="Home Team Logo" style="width: 125px; height: 125px; margin-right: 10px;">
+              <span style="font-size: 24px; margin: 0 10px; display: flex; align-items: center;">vs</span>
+              <img id="awayTeamLogo" alt="Away Team Logo" style="width: 125px; height: 125px;">
+            </div>
         </div>
+        <div id="resultText"></div>
     </div>
 
     <script src="script.js"></script> 

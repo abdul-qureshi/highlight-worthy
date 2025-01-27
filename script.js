@@ -38,7 +38,9 @@ function parseResult(data) {
         const homeTeamLogo = document.getElementById('homeTeamLogo');
         const awayTeamLogo = document.getElementById('awayTeamLogo');
         homeTeamLogo.src = closestGame.homeTeam.logo;
+        homeTeamLogo.alt = closestGame.homeTeam.name.default;
         awayTeamLogo.src = closestGame.awayTeam.logo;
+        awayTeamLogo.alt = closestGame.awayTeam.name.default;
 
         if (closestGame.gameState === "LIVE") {
             return `The game is live`;
@@ -47,9 +49,9 @@ function parseResult(data) {
         let awayTeamScore = closestGame.awayTeam.score;
 
         if (homeTeamScore > awayTeamScore) {
-            return `Home team won on ${closestDate}.`;
+            return `${closestGame.homeTeam.name.default} won on ${closestDate}.`;
         } else {
-            return `Away team won on ${closestDate}.`;
+            return `${closestGame.awayTeam.name.default} won on ${closestDate}.`;
         }
     } else {
         return 'No recent game found.';
@@ -58,18 +60,12 @@ function parseResult(data) {
 
 fetch(apiUrl)
     .then(response => {
-        const resultDiv = document.getElementById('result');
+        const resultDiv = document.getElementById('resultText');
         if (response.ok) {
             response.json().then(
                  data => {
                      const resultMessage = parseResult(data);
-                     resultDiv.innerHTML = `
-                         <div id="logos">
-                             <img id="homeTeamLogo" src="${data.gamesByDate[0].games[0].homeTeam.logo}" alt="Home Team Logo" style="width: 50px; height: 50px; margin-right: 10px;">
-                             <img id="awayTeamLogo" src="${data.gamesByDate[0].games[0].awayTeam.logo}" alt="Away Team Logo" style="width: 50px; height: 50px;">
-                         </div>
-                         <p>${resultMessage}</p>
-                     `;
+                     resultDiv.textContent = resultMessage;
                  });
         } else {
             let errorText = 'Error loading data.';
