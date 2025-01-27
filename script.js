@@ -41,15 +41,15 @@ function parseResult(data) {
         awayTeamLogo.src = closestGame.awayTeam.logo;
 
         if (closestGame.gameState === "LIVE") {
-            return `The game between ${closestGame.homeTeam.name.default} and ${closestGame.awayTeam.name.default} is live`;
+            return `The game is live`;
         }
         let homeTeamScore = closestGame.homeTeam.score;
         let awayTeamScore = closestGame.awayTeam.score;
 
         if (homeTeamScore > awayTeamScore) {
-            return `${closestGame.homeTeam.name.default} won against ${closestGame.awayTeam.name.default} on ${closestDate}`;
+            return `Home team won on ${closestDate}`;
         } else {
-            return `${closestGame.awayTeam.name.default} won against ${closestGame.homeTeam.name.default} on ${closestDate}`;
+            return `Away team won on ${closestDate}`;
         }
     } else {
         return 'No recent game found.';
